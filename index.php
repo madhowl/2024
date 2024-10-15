@@ -9,7 +9,13 @@ ini_set('display_errors', 'on');
 require('vendor/autoload.php');
 
 $front = new \App\Controllers\FrontEndController();
-$front->index();
+$model = new \App\Models\MarkDownModel();
+
+//$front->index();
+//$front->showBlogJsonPage();
+//$front->showSinglePageJsonBlog(2);
+
+$model->getArticleList();
 
 
 
