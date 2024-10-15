@@ -10,10 +10,9 @@ class FrontEndView extends CoreView
     {
         $title = 'Главная страница';
         $description = 'Описание Главной страницы';
-        $template = $this->twig->load('index.twig');
-        echo $template->render([
-            'title' => $title,
-            'description' => $description
-        ]);
+//        $template = $this->twig->load('index.twig');
+//        echo $template->render(['title' => $title, 'description' => $description ]);
+        echo $this->twig->render('index.twig',['title' => $title, 'description' => $description]);
     }
+
 }
