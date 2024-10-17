@@ -11,11 +11,14 @@ require('vendor/autoload.php');
 $front = new \App\Controllers\FrontEndController();
 $model = new \App\Models\MarkDownModel();
 
-//$front->index();
+$front->app();
 //$front->showBlogJsonPage();
 //$front->showSinglePageJsonBlog(2);
 
-$model->getArticleList();
+
+//
+//$model->getArticleList();
+//var_dump($model->getSinglePage('main.md'));
 
 
 
