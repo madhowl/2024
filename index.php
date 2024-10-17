@@ -8,10 +8,25 @@ ini_set('display_errors', 'on');
 //include_once './inc/function.php';
 require('vendor/autoload.php');
 
-$front = new \App\Controllers\FrontEndController();
-$model = new \App\Models\MarkDownModel();
+use MiladRahimi\PhpRouter\Router;
+use Laminas\Diactoros\Response\JsonResponse;
 
-$front->app();
+$router = Router::create();
+
+$router->get('/', [App\Controllers\FrontEndController::class, 'showBlogJsonPage']);
+$router->get('/page/{id}', [App\Controllers\FrontEndController::class, 'showSinglePageJsonBlog']);
+
+$router->dispatch();
+
+
+
+
+//
+//
+//$front = new \App\Controllers\FrontEndController();
+//$model = new \App\Models\MarkDownModel();
+//
+//$front->app();
 //$front->showBlogJsonPage();
 //$front->showSinglePageJsonBlog(2);
 

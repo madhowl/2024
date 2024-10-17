@@ -2,7 +2,8 @@
     "name": "madhowl/2024",
     "description": "Simple MarkDown Blog",
     "require": {
-        "twig/twig": "^3.14"
+        "twig/twig": "^3.14",
+        "miladrahimi/phprouter": "5.*"
     },
     "license": "MIT",
     "autoload": {

@@ -17,8 +17,8 @@ class FrontEndController
     {
 
         $this->View = new FrontEndView();
-        //$this->Model = new JsonModel();
-        $this->Model = new MarkDownModel();
+        $this->Model = new JsonModel();
+        //$this->Model = new MarkDownModel();
     }
 
     public function app()
