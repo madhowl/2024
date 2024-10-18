@@ -29,7 +29,7 @@
 
                 <div class="widgets-container">
                     <!-- widgets -->
-                    <?php include_once ('/template/partials/wigets/categories_wiget.php'); ?>
+                    <?php include_once ('template/partials/widgets/categories_widget.php'); ?>
                 </div>
 
             </div>
