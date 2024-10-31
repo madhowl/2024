@@ -5,6 +5,7 @@ declare(strict_types=1);
 use MiladRahimi\PhpRouter\Router;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\ServerRequest;
 use App\Views\ErrorsView;
 
 
@@ -18,7 +19,11 @@ $router->get('/blog/{id}', [\App\Controllers\FrontController::class, 'showSingle
 
 
 $router->get('/admin/', [\App\Controllers\AdminController::class, 'index']);
-$router->get('/admin/articles/', [\App\Controllers\AdminController::class, 'showArticlesTable']);
+$router->get('/admin/articles', [\App\Controllers\AdminController::class, 'showArticlesTable']);
+$router->get('/admin/article/create', [\App\Controllers\AdminController::class, 'showCreateArticleForm']);
+$router->post('/admin/article/store', [\App\Controllers\AdminController::class, 'storeArticle']);
+$router->get('/admin/article/{id}/edit', [\App\Controllers\AdminController::class, 'showEditArticleForm']);
+$router->post('/admin/article/update', [\App\Controllers\AdminController::class, 'updateArticle']);
 
 
 
@@ -30,5 +35,5 @@ try {
     $router->getPublisher()->publish( new HtmlResponse( $error->render404Page(), 404));
 } catch (Throwable $e) {
     // Log and report...
-    //$router->getPublisher()->publish( new HtmlResponse( $error->render500Page(), 500));
+    $router->getPublisher()->publish( new HtmlResponse( $error->render500Page(), 500));
 }

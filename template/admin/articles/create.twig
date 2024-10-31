@@ -1,0 +1,37 @@
+{% extends "layout.twig" %}
+{% block content %}
+
+    <!--begin::Create Article form -->
+    <div class="card card-primary card-outline mb-4"> <!--begin::Header-->
+        <div class="card-header">
+            <div class="card-title">Новая статья</div>
+        </div> <!--end::Header-->
+        <!--begin::Form-->
+        <form action="/admin/article/store" method="post">
+            <!--begin::Body-->
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Заголовок статьи</label>
+                    <input type="text" name="title" class="form-control" id="title">
+
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Изображение вводного текста</label>
+                    <input type="text" name="image" class="form-control" id="image">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Текст статьи</label>
+                    <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+                </div>
+            </div>
+            <!--end::Body-->
+            <!--begin::Footer-->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" name="btnStore">Добавить статью</button>
+            </div>
+            <!--end::Footer-->
+        </form> <!--end::Form-->
+    </div>
+    <!--end::Create Article form-->
+
+{% endblock %}
