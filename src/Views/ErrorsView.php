@@ -17,7 +17,7 @@ class ErrorsView extends CoreView
     }
     public function render500Page()
     {
-        echo $this->twig->render('error-500.twig',[]);
+        return $this->twig->render('error-500.twig',[]);
     }
 
 }
