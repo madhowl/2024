@@ -36,4 +36,4 @@ try {
 } catch (Throwable $e) {
     // Log and report...
     $router->getPublisher()->publish( new HtmlResponse( $error->render500Page(), 500));
-}
+}*/
