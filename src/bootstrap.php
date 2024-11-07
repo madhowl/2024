@@ -26,8 +26,8 @@ $router->get('/admin/article/{id}/edit', [\App\Controllers\AdminController::clas
 $router->post('/admin/article/update', [\App\Controllers\AdminController::class, 'updateArticle']);
 
 
-
-
+$router->dispatch();
+/*
 try {
     $router->dispatch();
 } catch (RouteNotFoundException $e) {
