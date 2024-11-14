@@ -18,6 +18,15 @@ $router->get('/blog/', [\App\Controllers\FrontController::class, 'showArticlesLi
 $router->get('/blog/{id}', [\App\Controllers\FrontController::class, 'showSingleArticlePage']);
 
 
+
+$router->get('/login', [\App\Core\Auth::class, 'showLoginPage']);
+$router->post('/sign-in', [\App\Core\Auth::class, 'check']);
+$router->get('/log-out', [\App\Core\Auth::class, 'logOut']);
+
+
+
+
+
 $router->get('/admin/', [\App\Controllers\AdminController::class, 'index']);
 $router->get('/admin/articles', [\App\Controllers\AdminController::class, 'showArticlesTable']);
 $router->get('/admin/article/create', [\App\Controllers\AdminController::class, 'showCreateArticleForm']);

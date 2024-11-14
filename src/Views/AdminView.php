@@ -19,6 +19,11 @@ class AdminView extends CoreView
         $pagetitle = "Admin Panel";
         return $this->twig->render('layout.twig',compact('pagetitle'));
     }
+    public function renderLoginPage()
+    {
+        //$pagetitle = "Admin Panel";
+        return $this->twig->render('login.twig',[]);
+    }
 
     public function renderEditArticlePage($article)
     {

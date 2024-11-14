@@ -23,8 +23,8 @@ class Article
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             //PDO::ATTR_EMULATE_PREPARES => false,
         ];
-        //$this->pdo = new PDO($dsn, $user, $pass, $opt);//MySQL PDO connection
-        $this->pdo = new PDO($dir);// SQLite PDO connection
+        $this->pdo = new PDO($dsn, $user, $pass, $opt);//MySQL PDO connection
+        //$this->pdo = new PDO($dir);// SQLite PDO connection
         $this->setTable('articles');
     }
 

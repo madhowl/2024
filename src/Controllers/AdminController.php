@@ -3,17 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\Article;
+use App\Traits\Auth;
 use App\Views\AdminView;
 use Laminas\Diactoros\ServerRequest;
 use App\Core\Helper;
 
 class AdminController
 {
+    use Auth;
+
     protected $View;
     private  $Article;
 
     public function __construct()
     {
+        $this->checkAuth();
         $this->View = new AdminView();
         $this->Article = new Article();
     }
