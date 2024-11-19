@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Core\Interfaces\ModelInterface;
 use App\Models\Article;
 use App\Views\AdminView;
+use GUMP;
 use Laminas\Diactoros\ServerRequest;
 use App\Core\Helper;
 
@@ -12,10 +14,10 @@ class AdminController
     protected $View;
     private  $Article;
 
-    public function __construct()
+    public function __construct(ModelInterface $article)
     {
         $this->View = new AdminView();
-        $this->Article = new Article();
+        $this->Article = $article;
     }
 
     public function index()
@@ -33,9 +35,22 @@ class AdminController
     }
     public function storeArticle(ServerRequest $request)
     {
-        $article = $request->getParsedBody();
-        $this->Article->store($article);
-        Helper::goToUrl('/admin/articles');
+        $message = null;
+        $filtered = GUMP::filter_input($request->getParsedBody(), $this->Article->filter);
+        unset($filtered['id']);
+        $is_valid = GUMP::is_valid($filtered, $this->Article->rules);
+        if ($is_valid === true) {
+            if ($this->Article->store($filtered) == null) {
+                $message = 'Статья добавлена';
+            }
+        } else {
+            $message = $is_valid; // array of error messages
+        }
+
+        return $message;
+//        $article = $request->getParsedBody();
+//        $this->Article->store($article);
+//        Helper::goToUrl('/admin/articles');
     }
     public function updateArticle(ServerRequest $request)
     {

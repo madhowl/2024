@@ -2,52 +2,44 @@
 
 namespace App\Models;
 
+use App\Core\CoreModel;
+use App\Core\Interfaces\ModelInterface;
 use PDO;
 use App\Core\Helper as h;
 
-class Article
+class Article extends CoreModel implements ModelInterface
 {
-    protected $pdo;
-    protected $table;
-    public function __construct()
-    {
-        $host = '192.168.200.79';
-        $db = '2024';
-        $user = 'user';
-        $pass = 'user';
-        $charset = 'utf8';
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";// Mysql
-        $dir = 'sqlite:db/2024.sqlite';// SQLite file path
-        $opt = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            //PDO::ATTR_EMULATE_PREPARES => false,
+    public array $fields
+        = [
+            'id',
+            'title',
+            'image',
+            'content',
+
         ];
-        //$this->pdo = new PDO($dsn, $user, $pass, $opt);//MySQL PDO connection
-        $this->pdo = new PDO($dir);// SQLite PDO connection
+
+    public array $rules
+        = [
+//        'id'             => 'required',
+            'title'   => 'required',
+            'image'   => 'required',
+            'content' => 'required',
+
+        ];
+
+    public array $filter
+        = [
+            'id'      => 'whole_number',
+            'title'   => 'trim|htmlencode',
+            'image'   => 'trim|htmlencode',
+            'content' => 'trim|basic_tags',
+
+        ];
+
+    public function __construct(PDO $pdo)
+    {
+        parent::__construct($pdo);
         $this->setTable('articles');
-    }
-
-    /**
-     * @param mixed $table
-     */
-    public function setTable($table): void
-    {
-        $this->table = $table;
-    }
-
-    public function getAll(): array
-    {
-        $stmt = $this->pdo->prepare('SELECT * FROM '.$this->table );
-        $stmt->execute([]);
-        return $stmt->fetchAll();
-    }
-
-    public function find($id): array
-    {
-        $stmt = $this->pdo->prepare('SELECT * FROM '.$this->table.' WHERE id = :id');
-        $stmt->execute([ 'id' => $id ]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function store( $article): void

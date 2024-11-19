@@ -2,16 +2,31 @@
 
 declare(strict_types=1);
 
+use App\Core\Interfaces\ModelInterface;
 use MiladRahimi\PhpRouter\Router;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\ServerRequest;
 use App\Views\ErrorsView;
+use App\Core\CoreModel;
 
 
 $error = new ErrorsView();
 
 $router = Router::create();
+
+$container = $router->getContainer();
+//$dir = 'sqlite:db/2024.sqlite';
+$container->singleton('$dir', 'sqlite:db/2024.sqlite');
+$container->singleton(PDO::class, fn($dir) => new PDO($dir));
+//$container->singleton(PDO::class, 'sqlite:db/2024.sqlite');
+//$container->singleton(ModelInterface::class, CoreModel::class);
+$container->singleton(ModelInterface::class, \App\Models\Article::class);
+$router->setContainer($container);
+
+
+//$router->get('/core_model', [CoreModel::class, 'getAll']);
+
 
 $router->get('/', [\App\Controllers\FrontController::class, 'index']);
 $router->get('/blog/', [\App\Controllers\FrontController::class, 'showArticlesListPage']);

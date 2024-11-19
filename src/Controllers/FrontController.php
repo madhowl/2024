@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\CoreController;
+use App\Core\CoreModel;
 use App\Core\Helper as h;
 use App\Models\Article;
 use App\Models\JsonModel;
@@ -13,10 +14,10 @@ class FrontController
     protected $View;
     private  $Model;
 
-    public function __construct()
+    public function __construct(Article $article)
     {
         $this->View = new FrontView();
-        $this->Model = new Article();
+        $this->Model = $article;
         //$this->Model = new JsonModel();
         //$this->Model = new MarkDownModel();
     }
