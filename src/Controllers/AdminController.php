@@ -47,6 +47,11 @@ class AdminController
         $this->Article->update($article);
         Helper::goToUrl('/admin/articles');
     }
+    public function destroyArticle($id)
+    {
+        $this->Article->destroy($id);
+        Helper::goToUrl('/admin/articles');
+    }
     public function showArticlesTable()
     {
         $articles = $this->Article->getAll();

@@ -13,6 +13,7 @@ $error = new ErrorsView();
 
 $router = Router::create();
 
+
 $router->get('/', [\App\Controllers\FrontController::class, 'index']);
 $router->get('/blog/', [\App\Controllers\FrontController::class, 'showArticlesListPage']);
 $router->get('/blog/{id}', [\App\Controllers\FrontController::class, 'showSingleArticlePage']);
@@ -33,6 +34,7 @@ $router->get('/admin/article/create', [\App\Controllers\AdminController::class, 
 $router->post('/admin/article/store', [\App\Controllers\AdminController::class, 'storeArticle']);
 $router->get('/admin/article/{id}/edit', [\App\Controllers\AdminController::class, 'showEditArticleForm']);
 $router->post('/admin/article/update', [\App\Controllers\AdminController::class, 'updateArticle']);
+$router->get('/admin/article/{id}/delete', [\App\Controllers\AdminController::class, 'destroyArticle']);
 
 
 $router->dispatch();

@@ -19,6 +19,7 @@ class FrontController
         $this->Model = new Article();
         //$this->Model = new JsonModel();
         //$this->Model = new MarkDownModel();
+
     }
     public function index()
     {

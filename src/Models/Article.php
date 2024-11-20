@@ -62,7 +62,6 @@ class Article
 
     public function update(object|array|null $article)
     {
-        $sql = "INSERT INTO ".$this->table." (id, title, image, content) VALUES (NULL, :title, :image, :content)";
          $sql = "UPDATE ".$this->table." SET title = :title, image = :image, content = :content  WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $article['id'], \PDO::PARAM_INT);
@@ -72,5 +71,11 @@ class Article
         $stmt->execute();
     }
 
+    public function destroy($id)
+    {
+        $sql = "DELETE FROM ".$this->table." WHERE id=?";
+        $stmt= $this->pdo->prepare($sql);
+        $stmt->execute([$id]);;
+    }
 
 }
