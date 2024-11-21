@@ -11,12 +11,12 @@ use App\Core\Helper;
 
 class AdminController
 {
-    protected $View;
-    private  $Article;
+    protected AdminView $View;
+    private  Article $Article;
 
-    public function __construct(ModelInterface $article)
+    public function __construct(Article $article, AdminView $view)
     {
-        $this->View = new AdminView();
+        $this->View = $view;
         $this->Article = $article;
     }
 

@@ -14,10 +14,10 @@ class FrontController
     protected $View;
     private  $Model;
 
-    public function __construct(Article $article)
+    public function __construct(Article $model, FrontView $view)
     {
-        $this->View = new FrontView();
-        $this->Model = $article;
+        $this->View = $view;
+        $this->Model = $model;
         //$this->Model = new JsonModel();
         //$this->Model = new MarkDownModel();
     }

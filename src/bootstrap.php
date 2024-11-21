@@ -19,9 +19,13 @@ $container = $router->getContainer();
 //$dir = 'sqlite:db/2024.sqlite';
 $container->singleton('$dir', 'sqlite:db/2024.sqlite');
 $container->singleton(PDO::class, fn($dir) => new PDO($dir));
+$container->singleton('$front_template_path', 'template/front/');
+$container->singleton(\App\Views\FrontView::class, fn($front_template_path) => new \App\Views\FrontView($front_template_path));
+$container->singleton('$admin_template_path', 'template/admin/');
+$container->singleton(\App\Views\AdminView::class, fn($admin_template_path) => new \App\Views\AdminView($admin_template_path));
 //$container->singleton(PDO::class, 'sqlite:db/2024.sqlite');
 //$container->singleton(ModelInterface::class, CoreModel::class);
-$container->singleton(ModelInterface::class, \App\Models\Article::class);
+$container->singleton('ArticleModel', \App\Models\Article::class);
 $router->setContainer($container);
 
 

@@ -9,9 +9,9 @@ class CoreView implements ViewInterface
     protected $loader;
     protected $twig;
 
-    public function __construct()
+    public function __construct(string $template_path)
     {
-        $this->setLoader('template/front/');
+        $this->setLoader($template_path);
         $this->twig = new \Twig\Environment($this->loader, []);
     }
 
